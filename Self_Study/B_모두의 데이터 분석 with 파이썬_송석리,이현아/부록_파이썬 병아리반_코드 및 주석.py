@@ -135,10 +135,10 @@ names.append('나미')  # 기존 names에 지정된 리스트 마지막에 '나�
 print(names)          # '나미'가 추가된 리스트가 출력
 
 print(len(names))   # names에 지정된 리스트의 길이(요소 개수) 출력
-print(pen('data analysis for everyone'))  # 문자열의 길이 출력
+print(len('data analysis for everyone'))  # 문자열의 길이 출력
 
 names = ['쵸파', '루피', '상디', '조로']    # 변수에 리스트 지정
 names.append('해적왕')                     # 지정한 리스트의 마지막에 '해적왕' 추가
 for name in names                          # names에 존재하는 요소들에 대해 차례대로 아래 내용 수행
     if len(name) > 2:                      # 요소의 문자 길이가 2보다 크면,
-        print(name, '왔나요~?')            # '(name) 왔나요~?' 형태로 출
+        print(name, '왔나요~?')            # '(name) 왔나요~?' 형태로 출력
