@@ -3,7 +3,7 @@
 # 18.1. 선 그래프
 
 - 기본적인 선 그래프 그리기
-    
+  
     ```python
     run my_modules
     import matplotlib.pyplot as plt
@@ -15,11 +15,10 @@
            color = 'r')   # 색상
     ```
     
-    ![Untitled](18%20Pandas_%E1%84%89%E1%85%B5%E1%84%80%E1%85%A1%E1%86%A8%E1%84%92%E1%85%AA%209b225f6703254d1fa7ab6effddce27dc/Untitled.png)
+    ![Untitled](https://github.com/dodo-Riley/TIL/blob/master/Lecture/Python/md%20file/18_Pandas_%EC%8B%9C%EA%B0%81%ED%99%94_image/Untitled.png?raw=true)
     
-
 - Series 자료형으로 선 그래프 그리기
-    
+  
     ```python
     s1 = Series([10,20,30,40])
     s1.plot(xticks=[0,1,2,3],  # 눈금 좌표
@@ -33,7 +32,7 @@
             color='red')       # 색상
     ```
     
-    ![Untitled](18%20Pandas_%E1%84%89%E1%85%B5%E1%84%80%E1%85%A1%E1%86%A8%E1%84%92%E1%85%AA%209b225f6703254d1fa7ab6effddce27dc/Untitled%201.png)
+    ![Untitled](https://github.com/dodo-Riley/TIL/blob/master/Lecture/Python/md%20file/18_Pandas_%EC%8B%9C%EA%B0%81%ED%99%94_image/Untitled%201.png?raw=true)
     
 
 ```python
@@ -59,7 +58,7 @@ plt.rc('font', family = 'Malgun Gothic')
 ```
 
 - DataFrame으로 선 그래프 그리기
-    
+  
     ```python
     df1 = DataFrame({'apple' : [10,20,30,40], 'banana' : [49,49,30,12], 'mango' : [10,32,43,40]})
     df1.index = ['a','b','c','d']  # df1의 index 설정
@@ -69,7 +68,7 @@ plt.rc('font', family = 'Malgun Gothic')
     plt.legend(fontsize=9, loc=0, title='과일 이름')  # 범례표 설정
     ```
     
-    ![Untitled](18%20Pandas_%E1%84%89%E1%85%B5%E1%84%80%E1%85%A1%E1%86%A8%E1%84%92%E1%85%AA%209b225f6703254d1fa7ab6effddce27dc/Untitled%202.png)
+    ![Untitled](https://github.com/dodo-Riley/TIL/blob/master/Lecture/Python/md%20file/18_Pandas_%EC%8B%9C%EA%B0%81%ED%99%94_image/Untitled%202.png?raw=true)
     
 
 # 18.2. Bar plot
@@ -88,7 +87,7 @@ plt.legend(fontsize = 8, loc = 0, title = '김치종류')  # 범례 설정
 plt.xticks(rotation = 0)  # x축 눈금 회전 설정
 ```
 
-![Untitled](18%20Pandas_%E1%84%89%E1%85%B5%E1%84%80%E1%85%A1%E1%86%A8%E1%84%92%E1%85%AA%209b225f6703254d1fa7ab6effddce27dc/Untitled%203.png)
+![Untitled](https://github.com/dodo-Riley/TIL/blob/master/Lecture/Python/md%20file/18_Pandas_%EC%8B%9C%EA%B0%81%ED%99%94_image/Untitled%203.png?raw=true)
 
 # 18.3. pie chart (원형 차트)
 
@@ -126,7 +125,7 @@ ylim=(0, 8), yticks=np.arange(1, 8))
 plt.show()
 ```
 
-![Untitled](18%20Pandas_%E1%84%89%E1%85%B5%E1%84%80%E1%85%A1%E1%86%A8%E1%84%92%E1%85%AA%209b225f6703254d1fa7ab6effddce27dc/Untitled%204.png)
+![Untitled](https://github.com/dodo-Riley/TIL/blob/master/Lecture/Python/md%20file/18_Pandas_%EC%8B%9C%EA%B0%81%ED%99%94_image/Untitled%204.png?raw=true)
 
 # 18.4. histogram
 
@@ -144,7 +143,7 @@ s1.hist(bins=4)  # 구간 갯수 설정
 s1.plot(kind='kde') # 커널 밀도 함수(kernel density estimation)(연속형 히스토그램) 출력
 ```
 
-![Untitled](18%20Pandas_%E1%84%89%E1%85%B5%E1%84%80%E1%85%A1%E1%86%A8%E1%84%92%E1%85%AA%209b225f6703254d1fa7ab6effddce27dc/Untitled%205.png)
+![Untitled](https://github.com/dodo-Riley/TIL/blob/master/Lecture/Python/md%20file/18_Pandas_%EC%8B%9C%EA%B0%81%ED%99%94_image/Untitled%205.png?raw=true)
 
 # 18.5. scatter(산점도)
 
@@ -187,7 +186,7 @@ plt.ylabel(x_names[0])
 plt.colorbar()
 ```
 
-![Untitled](18%20Pandas_%E1%84%89%E1%85%B5%E1%84%80%E1%85%A1%E1%86%A8%E1%84%92%E1%85%AA%209b225f6703254d1fa7ab6effddce27dc/Untitled%206.png)
+![Untitled](https://github.com/dodo-Riley/TIL/blob/master/Lecture/Python/md%20file/18_Pandas_%EC%8B%9C%EA%B0%81%ED%99%94_image/Untitled%206.png?raw=true)
 
 # 18.6. boxplot
 
@@ -196,4 +195,4 @@ plt.boxplot(iris_x)
 plt.xticks(ticks = [1,2,3,4], labels = x_names)
 ```
 
-![Untitled](18%20Pandas_%E1%84%89%E1%85%B5%E1%84%80%E1%85%A1%E1%86%A8%E1%84%92%E1%85%AA%209b225f6703254d1fa7ab6effddce27dc/Untitled%207.png)
+![Untitled](https://github.com/dodo-Riley/TIL/blob/master/Lecture/Python/md%20file/18_Pandas_%EC%8B%9C%EA%B0%81%ED%99%94_image/Untitled%207.png?raw=true)
