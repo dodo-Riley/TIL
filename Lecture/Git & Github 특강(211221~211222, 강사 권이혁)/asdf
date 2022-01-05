@@ -1,0 +1,3 @@
+name = 'dodo'
+age = 30
+f'My name is {name}, i'm {age+1} years old'
