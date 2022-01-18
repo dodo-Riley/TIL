@@ -22,7 +22,11 @@
 - [`https://www.lfd.uci.edu/~gohlke/pythonlibs/#wordcloud`](https://www.lfd.uci.edu/~gohlke/pythonlibs/#wordcloud)에서 직접 파일을 받고, `prompt`창을 열어 해당 파일이 설치된 폴더에서 `pip install wordcloud-1.8.1-cp39-cp39-win_amd64.whl`와 같이 직접 설치
     - 파일을 받을 때, 본인 컴퓨터의 파이썬 버전과 윈도우 비트 수를 확인해 맞는 파일을 설치해야함
 
-### 5. 출처 및 참고
+### 5. 다른 해결책
 
-- [https://ddbobd.tistory.com/10](https://ddbobd.tistory.com/10)
-- [https://hcid-courses.github.io/TA/FAQ/python_wordcloud_troubleshoot.html](https://hcid-courses.github.io/TA/FAQ/python_wordcloud_troubleshoot.html)
+- `anaconda powershell prompt` 에서 `conda install -c conda-forge wordcloud` 입력
+
+### 6. 출처 및 참고
+
+- https://ddbobd.tistory.com/10
+- https://hcid-courses.github.io/TA/FAQ/python_wordcloud_troubleshoot.html
