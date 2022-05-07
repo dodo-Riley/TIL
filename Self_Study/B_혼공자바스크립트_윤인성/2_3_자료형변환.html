@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 상수 선언
+        const input = prompt('message','_default') // prompt(입력창 표시 문자열, 디폴트 입력 문자열)
+        // 콘솔에서 확인
+        console.log(input)
+    </script>
+
+    <script>
+        const input2 = confirm('수락하시겠습니까?') // confirm(확인창 표시 문자열)
+        console.log(input2) // 확인 시 true, 취소 시 false
+    </script>
+
+    <script>
+        const a = '3'
+        console.log(typeof(a))
+        console.log(typeof(Number(a))) // 숫자형으로 자료형 변환
+        console.log(typeof(Number(a+'hello'))) // 숫자형으로 자료형 변환
+        console.log(Number(a+'hello')) // NaN 도 숫자형임
+        console.log(typeof('52'-0))
+        console.log(typeof(1+false)) // 숫자로 연산되어 숫자형
+        console.log(typeof("hello"+1)) // 문자로 연산되어 문자형
+        console.log("hello"+1)
+        console.log(String(52)) // 문자열로 변환
+        console.log(52+'') // 문자열로 변환
+        console.log(Boolean(0)) // 불 자료형으로 변환, 대부분 true이나 0,NaN,빈문자열,null,indefined는 false
+    </script>
+</body>
+</html>
