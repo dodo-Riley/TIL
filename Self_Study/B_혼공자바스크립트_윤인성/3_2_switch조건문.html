@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--기본 swith 조건문-->
+    <script>
+        const input = Number(prompt('숫자를 입력하세요.','숫자'))
+
+        switch (input%2) { //조건
+            case 0: 
+            alert('짝수') // 케이스별 수행 내용
+            break
+            case 1: 
+            alert('홀수')
+            break
+            default: // 디폴트는 생략 가능
+            alert('숫자가 아닙니다.')
+            break
+        }
+    </script>
+    <!--if조건문을 switch 조건문으로-->
+    <script>
+        const date = new Date()
+        const hour = date.getHours()
+
+        switch (true) {
+            case hour<11:
+                console.log('아침입니다.')
+                break
+            case hour<15:
+                console.log('점심입니다.')
+                break
+            default:
+                console.log('저녁입니다.')
+                break
+        }
+    </script>
+    <!--삼항 연산자-->
+    <script>
+        const num = Number(prompt('숫자를 입력하세요','숫자'))
+
+        const result = (num>=0) ? '0 이상의 숫자입니다.' : '0 미만의 숫자입니다.'
+        console.log(result)
+        // 넘파이의 where 메서드와 비슷함
+        // 조건 ? 참일 경우 결과 : 거짓일 경우 결과
+    </script>
+    <!--태어난연도를 입력받아 띠 출력하기-->
+    <script>
+        const year = Number(prompt('태어난 해를 입력하세요.','연도'))
+        const e = year % 12
+        let result2
+        if (e===0) {
+            result2='원숭이'
+        } else if (e===1) {
+            result2='닭'
+        } else if (e===2) {
+            result2='개'
+        } else if (e===3) {
+            result2='돼지'
+        } else if (e===4) {
+            result2='쥐'
+        } else if (e===5) {
+            result2='소'
+        } else if (e===6) {
+            result2='호랑이'
+        } else if (e===7) {
+            result2='토끼'
+        } else if (e===8) {
+            result2='용'
+        } else if (e===9) {
+            result2='뱀'
+        } else if (e===10) {
+            result2='말'
+        } else if (e===11) {
+            result2='양'
+        } 
+        alert(`${year}년에 태어났다면 ${result2}띠입니다.`) // 작은따옴표가 아니라 백틱임에 주의
+    </script>
+    <!--더 간단하게-->
+    <script>
+        const year2 = Number(prompt('태어난 해를 입력하세요.','연도'))
+        const tti = '원숭이,닭,개,돼지,쥐,소,호랑이,토끼,용,뱀,말,양'.split(',')
+        alert(`${year2}년에 태어났다면 ${tti[year2%12]}띠입니다.`)
+    </script>
+    <!--짧은 조건문-->
+    <script>
+        10>20 || console.log('아닙니다.') // 조건 || 거짓이면 실행할 문장
+        10<20 && console.log('맞습니다.') // 조건 && 참이면 실행할 문장
+    </script>
+</body>
+</html>
