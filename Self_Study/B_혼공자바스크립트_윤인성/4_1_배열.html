@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const str='안녕하세요'
+        console.log(str[2])
+        console.log(str[str.length-1])
+    </script>
+
+    <script>
+        const array = [273,'String',true,function(){},{},[273,103]]
+        console.log(array) // 배열엔 다양한 자료형이 가능
+    </script>
+
+    <script>
+        const fruits = ['배','사과','키위','바나나']
+        console.log(fruits[0])
+        console.log(fruits[1+1]) // 배열 인덱싱
+        console.log(fruits.length) // 배열의 길이 확인
+        console.log(fruits.push('포도')) // 요소 추가, 추가된 배열 길이 반환
+        console.log(fruits)
+        console.log(fruits[7]='딸기') // 특정 인덱스에 요소 추가
+        console.log(fruits)
+        console.log(fruits.splice(2,1)) // 특정 인덱스부터 특정 개수만큼 요소 제거, 제거된 요소를 포함하는 배열 반환
+        console.log(fruits)
+        const index = fruits.indexOf('바나나') // 특정 요소의 인덱스 구하기
+        console.log(index)
+        console.log(fruits.splice(index,1))
+        console.log(fruits.indexOf('바나나')) // 요소가 없으면 -1 반환
+        fruits.splice(0,0,'복숭아') // 특정 인덱스에 요소 추가
+        console.log(fruits)
+    </script>
+
+    <script>
+        const a = '안녕'
+        const b = '하세요'
+        const c = a+b
+        console.log(a,b,c) // 비파괴적처리(원본 변경 X)
+
+        const list = [1,2,3]
+        list.push(4)
+        console.log(list) // 파괴적 처리(원본 변경 O)
+    </script>
+</body>
+</html>
