@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--익명 함수-->
+    <script>
+        // 변수 생성
+        const 함수 = function() {
+            console.log('함수 내부의 코드입니다...1')
+            console.log('함수 내부의 코드입니다...2')
+            console.log('함수 내부의 코드입니다...3')
+            console.log('')
+        }
+        // 함수 호출
+        함수()
+        함수()
+        // 함수 자료형 및 자체 확인
+        console.log(typeof 함수)
+        console.log(함수)
+
+        // 선언적 함수
+        // let 함수 = function() {} 와 같은 기능을 수행함
+        function 함수2() {
+            console.log('함수 내부의 코드입니다...1')
+            console.log('함수 내부의 코드입니다...2')
+            console.log('함수 내부의 코드입니다...3')
+            console.log('')
+        }
+        // 함수 호출
+        함수2()
+        함수2()
+        // 함수 자료형 및 자체 확인
+        console.log(typeof 함수2)
+        console.log(함수2)
+
+        // 매개변수와 리턴
+        function f(x) {
+            return x*x
+        }
+        console.log(f(3))
+    </script>
+
+    <!--윤년을 확인하는 함수 만들기-->
+    <script>
+        function isLeapYear(year) {
+            if (year%4===0 && year%100!==0 || year%400===0){
+                return ('윤년입니다.')}
+            else {
+                return('윤년이 아닙니다.')
+            }
+        }
+        console.log(`${isLeapYear(2020)}`)
+        console.log(`${isLeapYear(2010)}`)
+        console.log(`${isLeapYear(2000)}`)
+        console.log(`${isLeapYear(1900)}`)
+    </script>
+
+    <!--두 개 숫자 사이 모든 정수를 더하는 함수-->
+    <script>
+        function sumAll(a,b) {
+            let result = 0
+            for (i=a; b>=i; i++) {
+                result += i
+            }
+            return result
+        }
+
+        console.log(sumAll(1,5))
+        console.log(sumAll(1,100))
+    </script>
+    
+    <!--배열 내에서 최소값 구하기-->
+    <script>
+        function min(array) {
+            let result = array[0]
+            for (const i in array) {
+                if (result>=array[i]) {
+                    result = array[i]
+                }
+            }
+            return result
+        }
+        console.log(min([1,2,3,4,5]))
+        console.log(min([10,20,50,40,80]))
+    </script>
+
+    <!--나머지 매개변수(파이썬에서 변수 갯수 지정안하는거랑 같음)-->
+    <script>
+        function makeArray(...elements) {
+            console.log(elements)
+        }
+        makeArray(1,2)
+        makeArray(1,2,3,4,5)
+
+        // 최소값 찾기 함수
+        function Min(...elements) {
+            let result = elements[0]
+            for (const i in elements) {
+                if (result > elements[i]) {
+                    result = elements[i]
+                }
+            }
+            return result
+        }
+        console.log(Min(1,2,3,4,5))
+        console.log(Min(10,50,20,90,60))
+    </script>   
+
+    <!--매개변수, 나머지 매개변수 같이 사용하기-->
+    
+</body>
+</html>
