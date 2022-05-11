@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--콜백함수 : 원래 다른 함수 내에서 호출되는 함수였던걸로 기억-->
+    <script>
+        function callThreeTimes(callback) {
+            for (let i=0; i<3; i++) {
+                callback(i)
+            }
+        }
+        function print(i) {
+            console.log(`${i}번째 함수 호출`)
+        }
+        callThreeTimes(print)
+
+        // 익명 함수로 사용
+        callThreeTimes(function(i){
+            console.log(`${i}번째 함수 호출`)
+        })
+    </script>
+
+    <!--forEach(), map(), filter()-->
+    <script>
+        const numbers = [273,52,103,32,57]
+        numbers.forEach(function(value,index,array){
+            console.log(`${index}번째 요소:${value}`)
+        })
+
+        let numbers2 = numbers
+        numbers2 = numbers2.map(function(value, index, array){
+            return value*value
+        })
+        numbers2.forEach(console.log)
+
+        let numbers3 = numbers
+        numbers3 = numbers3.map(function(value){
+            return value*value
+        })
+        numbers3.forEach(console.log)
+
+        const all = [1,2,3,4,5,6]
+        const even = all.filter(function(value){
+            return value%2===0
+        })
+        console.log(even)
+    </script>
+
+    <!--화살표 함수(약간 파이썬에서 labmda 같은)--> 
+    <script>
+        //(매개변수) => {불 표현식 || 거짓일 때 실행할 문장}
+        //(매개변수) => 리턴값
+        let number = [0,1,2,3,4,5,6,7,8,9]
+        number.filter((value)=>value%2===0)
+                .map((value)=>value*value)
+                .forEach((value)=>{console.log(value)})
+    </script>
+
+    <!--타이머 함수-->
+    <script>
+        // interval은 특정 시간마다, Timeout은 특정 시간 후
+        let id
+        let count = 0
+        id = setInterval( ()=>{console.log(`1초마다 실행됩니다. ${count}번째`); count++}, 1*1000)
+
+        setTimeout( ()=>{console.log('종료됩니다');clearInterval(id)}, 5*1000)
+
+        // 종료는 clear
+    </script>
+
+    <!--이름 충돌 해결-->
+    <script>
+        let pi = 3.14
+        console.log(pi)
+
+        // 블록을 사용해 스코프 생성
+        {
+            let pi = 3.1415
+            console.log(pi)
+        }
+        console.log(pi)
+
+        // 함수 블록을 사용해 스코프 생성(var을 사용하는 구 버전에서는 이것만 가능)
+        function sample() {
+            let pi=3.141592
+            console.log(pi)
+        }
+        sample()
+        console.log(pi)
+    </script>
+
+    <!--엄격 모드-->
+    <script>
+        data = 10
+        console.log(data)
+    </script>
+    <script>
+        'use strict';
+        data2 = 10
+        console.log(data2) // 오류남, let 으로 변수 선언 해줘야 안남
+    </script>
+    <script>
+        'use strict';
+        let data2 = 10
+        console.log(data2) // 오류남, let 으로 변수 선언 해줘야 안남
+    </script>
+
+    <!--익명함수와 선언적함수 차이-->
+    <script>
+        // 익명함수는 순차적으로 코드를 읽으며 해당 줄을 읽을 때 생성
+        let anonymous
+        anonymous = function() {
+            console.log('1번 익명함수')
+        }
+        anonymous = function() {
+            console.log('2번 익명함수')
+        }
+        anonymous()
+    </script>
+    <script>
+         // 선억적 함수는 먼저 생성
+         선언적함수()
+         function 선언적함수() {
+             console.log('1번째 선언적함수')
+         }
+         function 선언적함수() {
+             console.log('2번째 선언적함수')
+         }
+    </script>
+    <script>
+        함수 = function() {
+            console.log('익명함수')
+        }
+        function 함수() {
+            console.log('선언적함수')
+        }
+        함수()
+    </script>
+
+    <!--블록이 다른 선언적 함수-->
+    <script>
+        선언적함수()
+
+        function 선언적함수() {
+            console.log('1번째 선언적 함수')
+        }
+    </script>
+    <script>
+        function 선언적함수() {
+            console.log('2번째 선언적 함수')
+        }
+    </script>
+    <script>
+        선언적함수()
+    </script>
+
+</body>
+</html>
