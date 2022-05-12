@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--객체 자료형/기본 자료형-->
+    <script>
+        // 속성과 메소드를 가질 수 있는 모든 것은 객체
+        const a = []
+        a.sample=10
+        console.log(a.sample)
+
+        function b(){}
+        b.sample=10
+        console.log(b.sample)
+
+        console.log(typeof a) // 배열 확인 불가
+        console.log(Array.isArray(a)) // 배열 확인
+
+        // 기본자료형:실체가 있는(null아니 undefined가 아닌) 것 중에 객체가 아닌 것
+        // 숫자, 문자열, 불
+        // 속성을 가질 수 없음
+        const c = 273
+        c.sample=10 // 여기서 오류 안나는 이유는 일시적 승급때문
+        console.log(c.sample)
+
+        const d = '안녕하세요'
+        d.sample=10
+        console.log(d.sample)
+
+        const e = true
+        e.sample=10
+        console.log(e.sample)
+
+        // 기본 자료형 > 객체
+        // const 객체 = new 객체자료형이름()
+        const f = new Number(273)
+        f.sample=10
+        console.log(f.sample)
+        const f2 = new String('안녕하세요')
+        f2.sample=10
+        console.log(f2.sample)
+        const f3 = new Boolean(true)
+        f3.sample=10
+        console.log(f3.sample)
+
+        console.log(f) // 객체형태
+        console.log(f+0) //숫자처럼 활용 가능
+        console.log(f.valueOf()) // 값 추출 가능
+    </script>
+
+    <!--프로토타입으로 메소드 추가-->
+    <script>
+        // 객체자료형이름.prototype.메소드이름=function(){}
+        Number.prototype.power=function(n=2){
+            return this.valueOf()**n
+        }
+        const ab=12
+        console.log('ab.power():', ab.power())
+        console.log('ab.power(3):', ab.power(3))
+        console.log('ab.power(4):', ab.power(4))
+
+        String.prototype.contain=function(data){
+            return this.indexOf(data)>=0
+        }
+        Array.prototype.contain=function(data){
+            return this.indexOf(data)>=0
+        }
+
+        const a2 = '안녕하세요'
+        console.log('안녕 in 안녕하세요:', a2.contain('안녕'))
+        console.log('없는데 in 안녕하세요:', a2.contain('없는데'))
+        const a3 = [273,32,103,57,52]
+        console.log('273 in [273,32,103,57,52]:', a3.contain(273))
+        console.log('0 in [273,32,103,57,52]:', a3.contain(0))
+    </script>
+
+    <!--객체별 메소드-->
+    <script>
+        // Number
+        const i = 123.456789
+        console.log(i.toFixed(2)) // 소수점 몇 자리까지 출력
+        console.log(i.toFixed(5))
+        
+        console.log(Number.isNaN(i)) // NaN인지 아닌지
+        console.log(Number.isFinite(i)) // 무한인지 아닌지
+
+        // String
+        const stringA='\n줄바꿈'
+        const stringB=' 공백     '
+
+        console.log(stringA.trim()) // 공백 제거
+        console.log(stringB.trim())
+
+        const input = `일자,달러,엔,유로
+02,1141.8,1097.46,1262.37
+03,1148.7,1111.36,1274.65
+04,1140.6,1107.81,1266.58
+07,1143.4,1099.58,1267.8
+08,1141.6,1091.97,1261.07`
+        console.log(input)
+        one = input.split('\n') // 해당 기준으로 나누기
+        console.log(one)
+        two = one.map((line)=>line.split(','))
+        console.log(two)
+        console.log(JSON.stringify(two,null,2))
+
+        // JSON
+        const data = [{
+            name:'혼자 공부하는 파이썬',
+            price:18000,
+            publisher:'한빛미디어'
+        },{
+            name:'HTML5 웹 프로그래밍 입문',
+            price:26000,
+            publisher:'한빛아카데미'
+        }]
+
+        console.log(JSON.stringify(data))
+        console.log(JSON.stringify(data,null,2))
+        console.log(JSON.stringify(data,Number,2))
+        console.log(JSON.stringify(data,null,5)) // 자바스크립트 객체를 json 문자열로 변환
+        const json = JSON.stringify(data)
+        console.log(JSON.parse(json)) // json 문자열을 자바스크립트 객체로 변환
+
+        // Math
+        // 속성으로 pi, e와 같은 상수
+        // 메소드로 Math.sin(), Math.cos() 등 삼각함수
+        // Math.random()은 0이상 1미만 랜덤 숫자 생성
+    </script>
+
+    <!--외부 스크립트 참조-->
+    <script src="test.js"></script>
+    <script>
+        console.log('# main의 script 태그')
+        console.log('sample_test 값:', sample_test)
+    </script>
+
+    <!--라이브러리-->
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+    <script>
+        // Lodash : 개발 시 보조적으로 사용하는 함수 제공
+        // Luxon/date-fns : 날짜와 시간을 다루는 라이브러리
+        // Handsontable : 웹 페이지에 스프레드 시트 출력 라이브러리
+        // D3.js/ChartJS : 그래프를 그리는 라이브러리
+        // Three.js : 3차원 그래픽을 다루는 라이브러리
+        const books = [{
+            name:'혼자 공부하는 파이썬',
+            price:18000,
+            publisher:'한빛미디어'
+        },{
+            name:'HTML5 웹 프로그래밍 입문',
+            price:26000,
+            publisher:'한빛아카데미'
+        },{
+            name:'딥러닝을 위한 수학',
+            price:25000,
+            publisher:'위키북스'
+        },{
+            name:'실전개발 입문',
+            price:30000,
+            publisher:'위키북스'
+        }]
+
+        const output = _.sortBy(books, (book)=>book.price)
+        console.log(JSON.stringify(output,null,2))
+
+        const output2 = _.orderBy(books, (book)=>book.price, 'desc')
+        console.log(JSON.stringify(output2,null,2))
+    </script>
+</body>
+</html>

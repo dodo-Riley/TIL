@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--객체 예시-->
+    <script>
+        const product = {
+            제품명 : '건조망고',
+            유형 : '당절임',
+            성분 : '망고, 설탕, 메타중아황산나트퓸,치자황색소',
+            원산지 : '필리핀'
+        }
+        console.log(product['제품명'])
+        console.log(product['유형'])
+        console.log(product.제품명)
+        console.log(product.유형)
+    </script>
+
+    <!--속성과 메소드-->
+    <script>
+        const pet = {
+            name:'구름',
+            eat:function(food){
+                alert(this.name+'은(는) '+food+'을(를) 먹습니다.')
+            }
+        }
+        pet.eat('밥')
+    </script>
+
+    <!--객체 속성 추가/제거-->
+    <script>
+        const student = {}
+        student.이름 = '송종호'
+        student.취미 = '게임'
+        student.장래희망 = '돈많은백수'
+
+        console.log(JSON.stringify(student,null,2))
+
+        delete student.장래희망
+        console.log(JSON.stringify(student,null,2))
+    </script>
+
+    <!--익명함수와 화살표함수의 this 차이-->
+    <script>
+        const test = {
+            a:function(){
+                console.log(this)
+            },
+            b:()=>{
+                console.log(this)
+            }
+        }
+        test.a() // 현재 코드에서 test 객체 출력
+        test.b() // window 객체 출력
+    </script>
+</body>
+</html>
