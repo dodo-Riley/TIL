@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--이벤트 설정-->
+    <script>
+        document.addEventListener('DOMContentLoaded', ()=>{
+            let counter = 0
+            const h1 = document.querySelector('h1')
+            h1.addEventListener('click', (event)=>{
+                counter++
+                h1.textContent=`클릭 횟수:${counter}`
+            })
+        })
+    </script>
+
+    <!--이벤트 연결 및 제거-->
+    <script>
+        document.addEventListener('DOMContentLoaded', ()=>{
+            let counter2 = 0
+            let isConnect = false
+            const h2 = document.querySelector('h2')
+            const p = document.querySelector('p')
+            const connectButton = document.querySelector('#connect')
+            const disconnectButton = document.querySelector('#disconnect')
+
+            const listener = (event) => {
+                h2.textContent=`클릭 횟수 : ${counter2++}`
+            }
+
+            connectButton.addEventListener('click', ()=>{
+                if (isConnect===false){
+                    h2.addEventListener('click',listener)
+                    p.textContent='이벤트 연결 상태:연결'
+                    isConnect=true
+                }
+            })
+            disconnectButton.addEventListener('click', ()=>{
+                if (isConnect===true){
+                    h2.removeEventListener('click',listener)
+                    p.textContent='이벤트 연결 상태:해제'
+                    isConnect=false
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+    <style> 
+        h1,h2{
+            user-select:none; /*더블클릭으로 글자 블럭 처리 되는거 방지*/
+        }
+    </style>
+    <h1>클릭 횟수:0</h1>
+
+    <h2>클릭 횟수:0</h2>
+    <button id="connect">이벤트 연결</button>
+    <button id="disconnect">이벤트 제거</button>
+    <p>이벤트 연결 상태 : 해제</p>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // document.head : head 태그 내 요소 읽기
+        // document.body : body 태그 내 요소 읽기
+        // document.title : title 태그 내 요소 읽기
+        // document.querySelector(선택자) : 해당 선택자 하나 읽기
+        // document.querySelectorAll(선택자) 해당 선택자 전부 읽기
+        // 태그 : 태그, 아이디 : #아이디, 클래스 : .클래스, 속성 : [속성=값], 후손 : 선택자_a 선택자_b 
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.querySelector('h1') // h1 태그 읽기
+            header.textContent='HEADERS'
+            header.style.color='white'
+            header.style.backgroundColor='black'
+            header.style.padding='10px'
+        })
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const headers = document.querySelectorAll('h2') // h2 태그 전부 읽기
+            headers.forEach((header)=>{
+                header.textContent='HEADERS'
+                header.style.color='white'
+                header.style.backgroundColor='black'
+                header.style.padding='10px'
+        })
+        })
+    </script>
+
+    <!--글자 조작-->
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            const a = document.querySelector('#a') // id=a 선택
+            const b = document.querySelector('#b') // id=b 선택
+            a.textContent='<h1>textContent 속성</h1>' // 문자 그대로 추가
+            b.innerHTML='<h1>innerHTML 속성</h1>' // html 형식으로 추가
+        })
+    </script>
+
+    <!--속성 조작-->
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            const rects = document.querySelectorAll('.rect')
+            rects.forEach((rect,index)=>{
+                const width = (index+1)*100
+                const src = `https://placekitten.com/${width}/250`
+                rect.setAttribute('src',src)
+            })
+        })
+    </script>
+
+    <!--스타일 조작-->
+    <script>
+        // h1.style.backgroundColor 가장 많이 쓰는 형태
+        // h1.style['backgroungColor']
+        // h1.style['background-color']
+        document.addEventListener('DOMContentLoaded',()=>{
+            const divs = document.querySelectorAll('body>div')
+            divs.forEach((div,index)=>{
+                console.log(div,index)
+                const val=index*10
+                div.style.height='10px'
+                div.style.backgroundColor=`rgba(${val},${val},${val})`
+            })
+        })
+    </script>
+</head>
+<body>
+    <h1></h1>
+    <h1></h1>
+
+    <h2></h2>
+    <h2></h2>
+    <h2></h2>
+    <h2></h2>
+
+    <div id="a"></div>
+    <div id="b"></div>
+
+    <img class="rect">
+    <img class="rect">
+    <img class="rect">
+    <img class="rect">
+
+    <div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div>
+
+</body>
+</html>
