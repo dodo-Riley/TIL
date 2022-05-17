@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--기본 이벤트 막기 : 이미지 마우스 우클릭 방지-->
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            const imgs = document.querySelectorAll('img')
+
+            imgs.forEach((img)=>{
+                img.addEventListener('contextmenu',(event)=>{
+                    event.preventDefault()
+                })
+            })
+        })
+    </script>
+
+    <!--기본 이벤트 막기 : 체크 때만 링크 활성화-->
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            let status=false
+
+            const checkbox=document.querySelector('input')
+            checkbox.addEventListener('change',(event)=>{
+                status=event.currentTarget.checked
+            })
+
+            const link = document.querySelector('a')
+            link.addEventListener('click',(event)=>{
+                if (!status) {
+                    event.preventDefault()
+                }
+            })
+        })
+    </script>
+
+    <!--할일 목록 만들기-->
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            // 문서 객체 가져오기
+            const input = document.querySelector('#todo')
+            const todoList = document.querySelector('#todo-list')
+            const addButton = document.querySelector('#add-button')
+
+            // removeTodo()에서 사용하기 위한 변수 정의
+            let keyCount = 0
+
+            // 할일 추가하는 함수 정의
+            const addTodo = () =>{
+                if (input.value.trim()==='') {
+                    alert('할 일을 입력해주세요.') // 입력값이 없으면 경고창
+                    return
+                }
+
+                // todo-list div 태그 아래에 추가될 요소 정의
+                const item = document.createElement('div')
+                const checkbox2 = document.createElement('input')
+                const text = document.createElement('span')
+                const button = document.createElement('button')
+
+                const key = keyCount
+                keyCount += 1
+
+                // todo-list div 태그 아래에 추가
+                item.setAttribute('data-key', key) //추가되는 순서에 따라 숫자가 속성으로 부여됨
+                item.appendChild(checkbox2)
+                item.appendChild(text)
+                item.appendChild(button)
+                todoList.appendChild(item)
+
+                checkbox2.type='checkbox' // 했는지 안했는지 줄긋기로 체크
+                checkbox2.addEventListener('change',(event)=>{
+                    item.style.textDecoration=event.target.checked ? 'line-through':''
+                })
+
+                text.textContent=input.value // 입력한 할 일 텍스트를 추가함
+
+                button.textContent='제거하기'
+                button.addEventListener('click',()=>{
+                    removeTodo(key) // 목록에서 제거하기 위한 버튼
+                })
+
+                input.value= '' // 입력창 초기화
+            }
+
+            const removeTodo = (key)=>{
+                const item = document.querySelector(`[data-key='${key}']`)
+                todoList.removeChild(item) // 해당 할 일 제거
+            }
+
+            addButton.addEventListener('click',addTodo) // 버튼 눌러서 추가
+            input.addEventListener('keyup',(event)=>{ // 엔터 눌러서 추가
+                const ENTER=13
+                if (event.keyCode===ENTER) {
+                    addTodo()
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+    <!--기본 이벤트 막기 : 이미지 마우스 우클릭 방지-->
+    <img src="http://placekitten.com/300/300" alt="">
+
+    <!--기본 이벤트 막기 : 체크 때만 링크 활성화-->
+    <div style="margin-top:100px">
+    <input type="checkbox">
+    <span>링크 활성화</span>
+    <br>
+    <a href="https://www.limnpet.ml">림펫</a>
+    </div> 
+
+    <!--할일 목록 만들기-->
+    <div style="margin-top:100px"></div>
+        <h1>할 일 목록</h1>
+        <input id="todo">
+        <button id="add-button">추가하기</button>
+        <div id="todo-list">
+        </div>
+    </div>
+</body>
+</html>

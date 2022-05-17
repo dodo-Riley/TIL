@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--단위 변환 : inch->cm -->
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            const input = document.querySelector('input')
+            const button = document.querySelector('button')
+            const p = document.querySelector('p')
+
+            button.addEventListener('click', ()=>{
+                const inch = Number(input.value)
+                if (isNaN(inch)) {
+                    p.textContent = '숫자를 입력해주세요'
+                    return
+                }
+                const cm = inch*2.54
+                p.textContent = `${cm}cm`
+            })
+        })
+    </script>
+
+    <!--이메일 양식 확인-->
+    <script>
+        document.addEventListener('DOMContentLoaded', ()=>{
+            const input2 = document.querySelector('input#emailinput')
+            const p2 = document.querySelector('p#emailp')
+            const isEmail = (value) => {
+                return (value.indexOf('@')>1) && (value.split('@')[1].indexOf('.')>1)
+            }
+            input2.addEventListener('keyup', (event) => {
+                const value = event.currentTarget.value
+                if (isEmail(value)) {
+                    p2.style.color='green'
+                    p2.textContent=`이메일 형식입니다:${value}`
+                } else {
+                    p2.style.color='red'
+                    p2.textContent=`이메일 형식이 아닙니다:${value}`
+                }
+            })
+        })
+    </script>
+
+    <!--드롭다운(select 태그)-->
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            const select = document.querySelector('select')
+            const p3 = document.querySelector('p#select')
+
+            select.addEventListener('change',(event)=>{
+                const options = event.currentTarget.options
+                const index = event.currentTarget.selectedIndex
+                p3.textContent = `선택:${options[index].textContent}`
+            })
+        })
+    </script>
+
+    <!--multiple select-->
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            const select2 = document.querySelector('select#multiple')
+            const p4 = document.querySelector('p#multiple')
+
+            select2.addEventListener('change',(event)=>{
+                const options2 = event.currentTarget.options
+                const list = []
+                for (const option of options2) {
+                    if (option.selected) {
+                        list.push(option.textContent)
+                    }
+                }
+                p4.textContent = `선택:${list.join(',')}`
+            })
+        })
+    </script>
+</head>
+<body>
+    <!--단위 변환 : inch->cm -->
+    <input type="text">inch<br>
+    <button>계산</button>
+    <p></p>
+
+    <!--이메일 양식 확인-->
+    <input type="text" id="emailinput">
+    <p id="emailp"></p>
+
+    <!--드롭다운(select 태그)-->
+    <select>
+        <option>떡볶이</option>
+        <option>순대</option>
+        <option>오뎅</option>
+        <option>튀김</option>
+    </select>
+    <p id="select">선택:떡볶이</p>
+
+    <!--multiple select-->
+    <select multiple id="multiple">
+        <option>떡볶이</option>
+        <option>순대</option>
+        <option>오뎅</option>
+        <option>튀김</option>
+    </select>
+    <p id="multiple"></p>
+</body>
+
+</html>

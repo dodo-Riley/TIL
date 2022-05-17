@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--cm를 여러 단위로 변환-->
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            let value
+            let constant = 10
+
+            const select = document.querySelector('select')
+            const input = document.querySelector('input')
+            const span = document.querySelector('span')
+
+            const calculate = () => {
+                span.textContent = (value*constant).toFixed(2)
+            }
+
+            select.addEventListener('change', (event)=>{
+                const options = event.currentTarget.options
+                const index = event.currentTarget.options.selectedIndex
+                constant = Number(options[index].value)
+                calculate()
+            })
+
+            input.addEventListener('keyup', ()=>{
+                value = Number(event.currentTarget.value)
+                calculate()
+            })
+        })
+    </script>
+
+    <!--체크 박스 활용-->
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            let [timer, timerid]=[0,0]
+            const h1 = document.querySelector('h1')
+            const checkbox = document.querySelector('input#check')
+
+            checkbox.addEventListener('change',(event)=>{
+                if (event.currentTarget.checked) {
+                    timerid=setInterval(()=>{
+                        timer += 1
+                        h1.textContent=`${timer}초`
+                    },1000)
+                } else {
+                    clearInterval(timerid)
+                }
+            })
+        })
+    </script>
+
+    <!--라디오 버튼 사용-->
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            const output = document.querySelector('#output')
+            const radios = document.querySelectorAll('[name=pet]')
+
+            radios.forEach((radio) => {
+                radio.addEventListener('change',(event)=>{
+                    const current = event.currentTarget
+                    if (current.checked) {
+                        output.textContent = `좋아하는 애완동물은 ${current.value}이시군요!`
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <!--cm를 여러 단위로 변환-->
+    <input type="text">cm=
+    <span></span>
+    <select>
+        <option value="10">mm</option>
+        <option value="0.01">m</option>
+        <option value="0.393701">inch</option>
+    </select>
+
+    <!--체크 박스 활용-->
+    <div style="padding-top:100px">
+    <input type="checkbox", id="check">
+    <span>타이머 활성화</span>
+    <h1></h1>
+    </div>
+
+    <!--라디오 버튼 사용-->
+    <div style="padding-top:100px">
+    <h3># 좋아하는 애완동물을 선택해주세요</h3>
+    <input type="radio" name="pet" value="강아지">
+    <span>강아지</span>
+    <input type="radio" name="pet" value="고양이">
+    <span>고양이</span>
+    <input type="radio" name="pet" value="햄스터">
+    <span>햄스터</span>
+    <input type="radio" name="pet" value="기타">
+    <span>기타</span>
+    <hr>
+    <h3 id="output"></h3>
+    </div>
+</body>
+</html>

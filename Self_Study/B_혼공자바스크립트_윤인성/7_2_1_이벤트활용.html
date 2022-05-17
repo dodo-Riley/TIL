@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--=키보드 이벤트-->
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            const textarea=document.querySelector('textarea')
+            const h1 = document.querySelector('h1')
+
+            textarea.addEventListener('keyup', (event)=>{ // 키보드에서 키가 떨어질 때 실행, keydown은 눌릴 때, keypress는 입력되었을때 
+                const length=textarea.value.length
+                h1.textContent=`글자 수:${length}`
+            })
+        })
+    </script>
+
+    <!--키보드 키코드-->
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            const h2 = document.querySelector('h2')
+            const print=(event)=>{
+                let output=''
+                output += `alt:${event.altKey}<br>` // 알트 키를 눌렀는지
+                output += `ctrl:${event.ctrlKey}<br>` // 컨트롤 키를 눌렀는지
+                output += `shift:${event.shiftKey}<br>` // 쉬프트 키를 눌렀는지
+                output += `code:${typeof(event.code)!=='undefined'? // 입력한 키(문자열)
+                                    event.code:event.keyCode}<br>` // 입력한 키(숫자)
+                h2.innerHTML=output
+            }
+            document.addEventListener('keydown',print)
+            document.addEventListener('keyup',print)
+        })
+    </script>
+
+    <!--별 움직이기-->
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            const star=document.querySelector('h3') // 별 초기 설정
+            star.style.position='absolute' // 겹쳐나오는게 정상, reletive로하면 아래에 나옴
+
+            let [x,y]=[0,0] // 별의 이동 출력
+            const block=20
+            const print2=()=>{
+                star.style.left=`${x*block}px`
+                star.style.top=`${y*block}px`
+            }
+            print2()
+            
+            // 별 이동
+            const [left,up,right,down]=[37,38,39,40] //방향키 키 코드
+            document.body.addEventListener('keydown',(event)=>{
+                switch (event.keyCode) {
+                    case left:
+                        x -= 1
+                        break
+                    case up:
+                        y -= 1
+                        break
+                    case right:
+                        x += 1
+                        break
+                    case down:
+                        y += 1
+                        break
+                }
+                print2()
+            })
+        })
+    </script>
+
+    <!--변수 접근 오류 해결-->
+    <script>
+        const listener = (event)=>{
+            const length2=textarea2.value.length
+            h4.textContent=`글자 수:${length2}`
+        }
+        document.addEventListener('DOMContentLoaded',()=>{
+            const textarea2=document.querySelector('div>textarea')
+            const h4 = document.querySelector('h4')
+            textarea2.addEventListener('keyup',listener)
+        })
+        // 위 상태로는 textarea가 정의되지 않았다는 오류 발생
+        // listener를 아래와 같이 변경
+        // const listener = (event)=>{ const length2=eventcurrentTarget.value.length}
+        // 또는 const listener = function (event) => { length2=this.value.length}
+    </script>
+
+</head>
+<body>
+    <!--표준/고전/인라인 이벤트 모델-->
+    <div>
+        표준 이벤트 모델<br>
+        document.body.addEventListener('keyup', ()=>{})<br>
+        고전 이벤트 모델 : 문서 객체가 갖고 있는 onOO으로 시작하는 속성에 함수를 할당<br>
+        document.body.onkeyup=(event)=>{}<br>
+        인라인 이벤트 모델 : onOO으로 시작하는 속성을 HTML 요소에 직접 입력<br>
+        &ltdiv onkeyup="listener(event)">&lt/div>
+    </div>
+    
+    <!--키보드 이벤트-->
+    <h1></h1>
+    <textarea></textarea>
+
+    <!--키보드 키코드-->
+    <h2></h2>
+
+    <!--별 움직이기-->
+    <h3>★</h3>
+
+    <!--변수 접근 오류 해결-->
+    <h4></h4>
+    <div>
+        <textarea></textarea>
+    </div>
+</body>
+</html>
