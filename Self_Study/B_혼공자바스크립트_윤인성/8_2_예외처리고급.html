@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--예외 객체 : e, exception을 일반적으로 사용-->
+    <script>
+        try{} 
+        catch(exception){}
+    </script>
+
+    <!--예외 정보 출력-->
+    <script>
+        try{
+            const array = new Array(99999999999999999999)
+        } catch (exception) {
+            console.log(exception)
+            console.log()
+            console.log(`예외 이름 : ${exception.name}`)
+            console.log(`예외 내용 : ${exception.message}`)
+        }
+    </script>
+
+    <!--예외 강제 발생 : 자바스크립트는 다른 프로그래밍 언어에 비해 예외가 많이 발생하지 않기때문에 강제로 인식시켜주기위함(undefined와 NaN때문)-->
+    <!-- <script>
+        throw '문자열' // 간단하게
+        throw new Error('문자열2') // 자세히
+    </script> -->
+
+    <script>
+        function divide(a,b) {
+            if (b===0) {
+                throw '0으로는 나누기가 불가능합니다'
+            }
+            return a/b
+        }
+
+        console.log(divide(10,2))
+        console.log(divide(10,0))
+    </script>
+
+    <script>
+        function test(object) {
+            if (object.a !== undefined && object.b !== undefined) {
+                console.log(object.a +object.b)
+            } else {
+                throw new Error("a속성과 b 속성을 지정하지 않았습니다.")
+            }
+        }
+
+        test({})
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

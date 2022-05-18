@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--구문 오류(syntax error):프로그램 실행 전 발생-->
+    <!-- <script>
+        console.log("# 프로그램이 시작되었습니다.")
+        console.log("괄호가 닫히지 않음"
+        // Uncaught SyntaxError: missing ) after argument list
+    </script> -->
+
+    <!--예외(exception) 또는 런타임(runtime) 오류 : 프로그램 실행 중 발생-->
+    <script>
+        console.log("#프로그램이 시작되었습니다.")
+        console.rog("log를 rog로 오타")
+        // Uncaught TypeError: console.rog is not a function
+    </script>
+
+    <!--기본 예외 처리 : if else이용-->
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            const h1 = document.querySelector('h1')
+            if (h1) {
+                h1.textContent='안녕하세요'
+            } else {
+                console.log('h1 태그가 존재하지 않습니다')
+            }
+        })
+    </script>
+
+    <!--고급 예외 처리 : try catch finally-->
+    <script>
+        try {
+            willExcept.byeBye() // 예외 발생 가능성이 있는 코드
+            console.log("try 구문의 마지막 줄")
+        } catch (exception) {
+            console.log("catch 구문의 마지막 줄")// 예외 발생 시 실행 코드
+        } finally {
+            console.log("finally 구문의 마지막 줄")// 무조건 실행할 코드(생략 가능)
+        }
+    </script>
+
+    <!--finally 구문을 사용하는 이유 : 강제로 무조건 실행하기 위함-->
+    <script>
+        function test() {
+            try{
+                alert('A위치입니다.')
+                throw '예외 강제 발생'
+            } catch (exception) {
+                alert('B위치입니다.')
+                return // 여기서 반환되고 함수가 끝나버려서 아래 실행안됨
+            } 
+                alert('C위치입니다.')
+            }
+        test()
+    </script>
+    <script>
+        function test2() {
+            try{
+                alert('A위치입니다.')
+                throw '예외 강제 발생'
+            } catch (exception) {
+                alert('B위치입니다.')
+                return
+            } finally{ // 아래까지 실행 됨
+                alert('C위치입니다.')
+            }
+        }
+        test2()
+    </script>
+
+</head>
+<body>
+    
+
+    
+</body>
+</html>

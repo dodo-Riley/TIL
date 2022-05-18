@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--타이머로 글자수 세기-->
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            const textarea = document.querySelector('textarea')
+            const h1 = document.querySelector('h1')
+            let timerid
+
+            textarea.addEventListener('focus',(event)=>{
+                timerid=setInterval(()=>{
+                    const length=textarea.value.length
+                    h1.textContent=`글자 수 : ${length}`
+                },50)
+            })
+            textarea.addEventListener('blur',(event)=>{
+                clearInterval(timerid)
+            })
+        })
+    </script>
+
+    <!--localStorage 객체(웹 프라우저에 데이터를 저장)-->
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            const p = document.querySelector('p')
+            const input = document.querySelector('input')
+            const button = document.querySelector('button')
+
+            const savedValue = localStorage.getItem('input') // 저장된 값 추출
+
+            if (savedValue) {
+                input.value = savedValue
+                p.textContent = `이전 실행 때의 마지막 값 : ${savedValue}`
+            }
+
+            input.addEventListener('keyup', (event)=>{
+                const value = event.currentTarget.value
+                localStorage.setItem('input',value) // 값 저장
+            })
+
+            button.addEventListener('click', (event)=>{
+                localStorage.clear() // 저장된 값 모두 제거
+                input.value=''
+            })
+        })
+    </script>
+</head>
+<body>
+    <!--타이머로 글자수 세기-->
+    <h1></h1>
+    <textarea></textarea>
+
+    <!--localStorage 객체(웹 프라우저에 데이터를 저장)-->
+    <div style="margin-top:100px">값을 입력하고 새로고침을 해보기</div>
+    <p></p>
+    <button>지우기</button>
+    <input type="text"> 
+</body>
+</html>
