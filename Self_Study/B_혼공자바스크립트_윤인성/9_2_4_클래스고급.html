@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--오버라이드 : 클래스 상속 시, 같은 이름의 메소드가 있을때-->
+    <script>
+        class LifeCycle {
+            call() {
+                this.a()
+                this.b()
+                this.c()
+            }
+            a() {console.log('a() 메소드를 호출')}
+            b() {console.log('b() 메소드를 호출')}
+            c() {console.log('c() 메소드를 호출')}
+        }
+
+        class Child extends LifeCycle {
+            a() {console.log('자식의 a() 메소드를 호출')}
+        }
+
+        new Child().call() // 상속받은 LifeCycle의 a() 메소드가 아닌 Child의 메소드가 호출
+    </script>
+
+    <!--오버라이드하지않고 부모클래스의 메소드까지 실행-->
+    <script>
+        class A {
+            call() {
+                this.a()
+                this.b()
+                this.c()
+            }
+            a() {console.log('a() 메소드를 호출')}
+            b() {console.log('b() 메소드를 호출')}
+            c() {console.log('c() 메소드를 호출')}
+        }
+
+        class A_child extends A {
+            a() {
+                super.a() // 부모의 a() 메소드를 실행
+                console.log('자식의 a() 메소드를 호출')}
+        }
+        new A_child().call()
+    </script>
+
+    <!--toString() 오버라이드-->
+    <script>
+        class Pet {
+            constructor (name,age) {
+                this.name=name
+                this.age=age
+            }
+
+            toString() { // 자바스크립트 내부 toString()(문자열로 변환) 오버라이드
+                return `이름:${this.name}\n나이:${this.age}살`
+            }
+        }
+
+        const pet = new Pet('구름',6)
+        alert(pet)
+        console.log(pet+'')
+    </script>
+</body>
+</html>

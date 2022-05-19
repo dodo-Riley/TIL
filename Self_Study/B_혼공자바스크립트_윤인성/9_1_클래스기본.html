@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--객체 : 학생 성적 관리-->
+    <script>
+        const students = []
+        students.push({이름:'구름',국어:87,영어:98,수학:88,과학:90})
+        students.push({이름:'별이',국어:92,영어:98,수학:96,과학:88})
+        students.push({이름:'겨울',국어:76,영어:96,수학:94,과학:86})
+        students.push({이름:'바다',국어:98,영어:52,수학:98,과학:92})
+
+    
+        console.log(JSON.stringify(students,null,2)) // json 문자열로 출력
+
+
+        let output = '이름\t총점\t평균\n'
+        for (const s of students) {
+            const sum = s.국어+s.영어+s.수학+s.과학
+            const average = sum/4
+            output += `${s.이름}\t${sum}점\t${average}점\n`
+        }
+        console.log(output) // 단순히 총점과 평균 계산해서 출력
+
+
+        function getSumOf (student) {
+            return student.국어+student.영어+student.수학+student.과학
+        }
+        function getAverageOf (student) {
+            return getSumOf(student)/4
+        }
+        let output2 = '이름\t총점\t평균\n'
+        for (const s of students) {
+            output2 += `${s.이름}\t${getSumOf(s)}점\t${getAverageOf(s)}점\n`
+        }
+        console.log(output2) // 함수를 정의해서 출력
+
+
+        for (const student of students) {
+            student.getSum = function () {
+                return this.국어+this.영어+this.수학+this.과학
+            }
+            student.getAverage = function () {
+                return this.getSum()/4
+            }
+        }
+        let output3 = '이름\t총점\t평균\n'
+        for (const s of students) {
+            output3 += `${s.이름}\t${s.getSum()}점\t${s.getAverage()}\n`
+        }
+        console.log(output3) // 메소드를 추가해서 출력
+
+
+        // 객체 생성부터 총점/평균까지 함수/메소드로
+        function createStudent(이름,국어,영어,수학,과학) {
+            return {이름:이름,국어:국어,영어:영어,수학:수학,과학:과학,
+            getSum() {
+                return this.국어+this.영어+this.수학+this.과학
+            },
+            getAverage() {
+                return this.getSum()/4
+            },
+            toString() {
+                return `${this.이름}\t${this.getSum()}점\t${this.getAverage()}\n`
+            }
+        }
+        }
+        const students2 = []
+        students2.push(createStudent('구름',87,98,88,90))
+        students2.push(createStudent('별이',92,98,96,88))
+        students2.push(createStudent('겨울',76,96,94,86))
+        students2.push(createStudent('바다',98,52,98,92))
+        let output4 = '이름\t총점\t평균\n'
+        for (const s of students2) {
+            output4 += s.toString()
+        }
+        console.log(output4)
+    </script>
+
+    <!--클래스-->
+    <script>
+        class Student {
+            constructor (이름,국어,영어,수학,과학) { // 생성자(파이선 __init__)
+                this.이름=이름
+                this.국어=국어
+                this.영어=영어
+                this.수학=수학
+                this.과학=과학
+            }
+            getSum() {
+                return this.국어+this.영어+this.수학+this.과학
+            }
+            getAverage() {
+                return this.getSum()/4
+            }
+            toString() {
+                return `${this.이름}\t${this.getSum()}점\t${this.getAverage()}\n`
+            }
+        }
+
+        const students3 = []
+        students3.push(new Student('구름',87,98,88,90)) //인스턴스 생성
+        students3.push(new Student('별이',92,98,96,88))
+        students3.push(new Student('겨울',76,96,94,86))
+        students3.push(new Student('바다',98,52,98,92))
+        let output5 = '이름\t총점\t평균\n'
+        for (const s of students3) {
+            output5 += s.toString()
+        }
+        console.log(output5)
+    </script>
+</body>
+</html>

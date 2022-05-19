@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--getter/setter-->
+    <script>
+        // 함수를 사용하기
+        class Square {
+            #length
+            constructor(l){
+                this.setLength(l)
+            }
+            setLength(value) {
+                if (value<=0) {
+                    throw '길이는 0보다 커야합니다'
+                }
+                this.#length=value
+            }
+            getLength(value) {
+                return this.#length
+            }
+            getPerimeter() {
+                return 4*this.#length
+            }
+            getArea() {
+                return this.#length**2
+            }
+        }
+
+        const square = new Square(10)
+        console.log(`한 변의 길이는 ${square.getLength()}입니다`)
+        square.setLength(20) // 변경됨
+        console.log(`한 변의 길이는 ${square.getLength()}입니다`)
+        square.setLength(-5) // 오류 발생
+    </script>
+
+    <script>
+        // get(객체.속성을 실행할때, 즉 값을 읽을때)과 set(객체.속성=값을 실행할 때, 즉 값을 할당할때)
+        class Square2 {
+            #length
+            constructor (l) {
+                this.length = l // set length가 호출
+            }
+            set length (l) {
+                if (l<=0) {
+                    throw '길이는 0보다 커야합니다.'
+                }
+                this.#length=l
+            }
+            get length () {
+                return this.#length
+            }
+            get perimeter() {
+                return 4*this.#length
+            }
+            get area() {
+                return this.#length**2
+            }
+        }
+        const square2 = new Square2(10)
+        console.log(`한 변의 길이:${square2.length}`) // 메소드가 아니라 속성을 부르는 형태
+        console.log(`둘레 : ${square2.perimeter}`)
+        console.log(`넓이 : ${square2.area}`)
+        square2.length=-10
+        const square2_1 = new Square2(-10)
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--직사각형 둘레와 넓이 클래스-->
+    <script>
+        class Rectangle {
+            constructor (w,h) {
+                this.width=w
+                this.height=h
+            }
+            getPerimeter() {
+                return 2*(this.width+this.height)
+            }
+            getArea() {
+                return this.width*this.height
+            }
+        }
+        const rectangle = new Rectangle(10,20)
+        console.log(`직사각형 둘레:${rectangle.getPerimeter()}`)
+        console.log(`직사각형 넓이:${rectangle.getArea()}`)
+    </script>
+
+    <!--정사각형 둘레와 넓이 클래스-->
+    <script>
+        class Square {
+            constructor(l) {
+                this.length=l
+            }
+            getPerimeter() {
+                return 4*this.length
+            }
+            getArea() {
+                return this.length**2
+            }
+        }
+        const square = new Square(10)
+        console.log(`정사각형 둘레:${square.getPerimeter()}`)
+        console.log(`정사각형 넓이:${square.getArea()}`)
+    </script>
+
+    <!--상속(동일 기능의 코드를 중복 작성하지 않게 하기 위함)-->
+    <script>
+        class Square_inheritance extends Rectangle { // Rectangle 클래스를 상속
+            constructor (l) {
+                super(l,l)
+            }
+        }
+        const square2 = new Square_inheritance(10)
+        console.log(`정사각형 둘레:${square2.getPerimeter()}`)
+        console.log(`정사각형 넓이:${square2.getArea()}`)
+    </script>
+
+    <!--private 속성-->
+    <script>
+        class Square2 {
+            constructor(l) {
+                if (l<=0) {
+                    throw '길이는 0보다 커야합니다' // 음수가 들어가지 못하도록 강제로 오류 발생
+                }
+                this.length = l
+            }
+            getPerimeter() {
+                return 4*this.length
+            }
+            getArea() {
+                return this.length**2
+            }
+        }
+        // const square_error = new Square2(-10) // 오류 발생
+        const square_error = new Square2(10)
+        square_error.length=-10 // 오류 발생 하지 않음 > 객체 생성 후 음수로 바꾸는 것을 막지 못함
+    </script>
+
+    <script>
+        // 위와 같은 상황을 방지하기 위해 사용하는 것이 private 속성과 메소드 : 이름 앞에 #을 붙여서 사용
+        class Square_private {
+            #length
+            constructor (length) {
+                if (length <-0) {
+                    throw '길이는 0보다 커야합니다'
+                }
+                this.#length=length
+            }
+            getPerimeter() {
+                return 4*this.#length
+            }
+            getArea() {
+                return this.#length**2
+            }
+        }
+        const square_private=new Square_private(10)
+        square_private.length=-10 // 바뀌지 않음
+        console.log(`정사각형 둘레:${square_private.getPerimeter()}`)
+        console.log(`정사각형 넓이:${square_private.getArea()}`)
+        // square_private.#length=-10 // Uncaught SyntaxError: Private field '#length' must be declared in an enclosing class오류 발생
+        // private 속성과 메소드는 해당 클래스 내부에서만 사용됨
+    </script>
+</body>
+</html>

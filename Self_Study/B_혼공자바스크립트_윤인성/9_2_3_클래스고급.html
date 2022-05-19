@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--static 속성/메소드-->
+    <script>
+        class Square {
+            #length
+            
+            static #counter = 0
+            static get counter () {
+                return Square.#counter
+            }
+
+            constructor (l) {
+                this.length = l
+                Square.#counter += 1
+            }
+
+            static perimeterOf (length) {
+                return length*4
+            }
+            static areaOf (length) {
+                return length**2
+            }
+
+            set length (l) {
+                if (l<=0) {
+                    throw '길이는 0보다 커야합니다.'
+                }
+                this.#length=l
+            }
+            get length () {
+                return this.#length
+            }
+            get perimeter() {
+                return 4*this.#length
+            }
+            get area() {
+                return this.#length**2
+            }
+        }
+
+        const squareA = new Square(10)
+        const squareB = new Square(20)
+        const squareC = new Square(30)
+        console.log(`지금까지 생성된 Square 인스턴스는 ${Square.counter}개`)
+        console.log(`길이가 20인 정사각형 둘레는 ${Square.perimeterOf(20)}`)
+        console.log(`길이가 10인 정사각형 둘레는 ${squareA.perimeter}`)
+        console.log(`${squareA.counter}`) // undefined
+        // static 속성과 메소드는 생성자에 접근하지 않고 바로 실행함
+        // 생성자에 선언된 변수, 객체 등 어떤 자료도 접근할 수 없음
+    </script>
+</body>
+</html>
