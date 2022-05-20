@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <!--스타일 지정-->
+    <!-- render() {
+        const style= {}
+        return <h1 style={style}></h1>
+    } -->
+
+    <!--체크상태에 따라 글자색 변경-->
+    <div id="style"></div>
+    <script type="text/babel">
+        class Style extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state={checked:false}
+                this.handleClick=this.handleClick.bind(this)
+            }
+            render() {
+                const textStyle={
+                    color:this.state.checked ? 'blue':'red' // 체크이면 파랑 아니면 빨강
+                }
+                return (<div>
+                    <input type='checkbox' onClick={this.handleClick}/>
+                    <h1 style={textStyle}>글자</h1>
+                    </div>)
+            }
+            handleClick (event) {
+                this.setState({
+                    checked:event.target.checked
+                })
+            }
+        }
+        const containerStyle = document.getElementById('style')
+        ReactDOM.render(<Style/>,containerStyle)
+    </script>
+
+    <!--컴포넌트 배열-->
+    <div id="list1"></div>
+    <script type="text/babel">
+        class List1 extends React.Component {
+            render () {
+                const list=[
+                    <li>사과</li>,
+                    <li>바나나</li>,
+                    <li>배</li>,
+                    <li>귤</li>
+                    ]
+            return (<ul>{list}</ul>)
+                }
+            }
+        const containerList1 = document.getElementById('list1')
+        ReactDOM.render(<List1/>,containerList1)
+    </script>
+
+    <div id="list2"></div>
+    <script type="text/babel">
+        class List2 extends React.Component {
+            constructor(props){
+                super(props)
+                this.state={fruits:['사과','바나나','배','귤']}
+            }
+            render () {
+                const list=this.state.fruits.map((item)=>{
+                    return (<li>{item}</li>)
+                })
+                return (<ul>{list}</ul>)
+            }
+        }
+        const containerList2 = document.getElementById('list2')
+        ReactDOM.render(<List2/>,containerList2)
+    </script>
+
+    <div id="list3"></div>
+    <script type="text/babel">
+        class List3 extends React.Component {
+            constructor(props){
+                super(props)
+                this.state={fruits:['사과','바나나','배','귤']}
+            }
+            render () {
+                return (<ul>{this.state.fruits.map((item)=>{
+                    return (<li>{item}</li>)
+                })}</ul>)
+            }
+        }
+        const containerList3 = document.getElementById('list3')
+        ReactDOM.render(<List3/>,containerList3)
+    </script>
+</body>
+</html>

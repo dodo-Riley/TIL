@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>
+    <!--js 읽어오기-->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel"> // 바벨 적용 부분(6to5, JSX를 ES5로, 즉 최신 문법으로 작성한 코드를 여러 브라우저에서 작동되도록)
+        const component = <h1>리액트 기본</h1> // 컴포넌트 생성
+        const container = document.getElementById('root') // 컨테이너 생성
+        ReactDOM.render(component, container) // 출력
+        // 결국 리액트는 컴포넌트 단위로 개발/재사용+자바스크립트 장점을 살린 라이브러리
+    </script>
+    
+    <!--JSX-->
+    <div id="img"></div>
+    <script type="text/babel">
+        const name='구름'
+        const imgUrl='https://placedog.net/400/200'
+
+        const compo1 = <div> 
+            <h1>{name}님 안녕하세요!</h1> 
+            <img src={imgUrl}/>
+            </div> // 따옴표가 아니라 중괄호
+        const conta1 = document.getElementById('img')
+        ReactDOM.render(compo1,conta1)
+    </script>
+
+    <!--클래스 컴포넌트-->
+    <div id='rootClass'></div>
+    <script type="text/babel">
+        class App extends React.Component {
+            render () {
+                return <h1>리액트 기본</h1>
+            }
+        }
+        const containerClass = document.getElementById('rootClass')
+        ReactDOM.render(<App/>,containerClass)
+    </script>
+
+    <div id="props"></div>
+    <script type="text/babel">
+        class App2 extends React.Component {
+            render () {
+                return <div>
+                    <h1>{this.props.name}님 안녕하세요!</h1> 
+                    <img src={this.props.imgUrl}/>
+                    </div> // this.props를 통해 속성으로 전달된 값을 사용
+            }
+        }
+        const containerProps = document.getElementById('props')
+        ReactDOM.render(<App2 name='구름' imgUrl='https://placedog.net/400/200'/>,containerProps)
+    </script>
+
+    <!--컴포넌트의 기본적인 속성과 메소드-->
+    <script type="text/babel">
+        class App3 extends React.Component {
+            constructor (props) {
+                super(props) // 부모 생성자 호출
+                this.state={속성:값} // 상태 선언, 변경하려면 this.setState 사용
+            }
+            render() {
+                // 출력할 내용
+            }
+            componenntDidMount() {
+                // 컴포넌트가 화면에 출력될 때 호출
+            }
+            componentWillUnmount() {
+                // 컴포넌트가 화면에서 제거될 때 호출
+            }
+        }
+    </script>
+
+    <!--현재 시간 출력하기-->
+    <div id="time"></div>
+    <script type="text/babel">
+        class Time extends React.Component {
+            constructor (props) {
+                super (props)
+                this.state = {
+                    time : new Date()
+                }
+            }
+            render() {
+                return (<h1>{this.state.time.toLocaleTimeString()}</h1>) // return 값에 괄호 습관 들이기
+            }
+            componentDidMount() {
+                this.timerId=setInterval(()=>{
+                    this.setState({
+                        time : new Date()
+                    })
+                },1000) // 1초마다 시간 변경
+            }
+            componentWillUnmount(){
+                clearInterval(this.timerId)
+            }
+        }
+        const containerTime = document.getElementById('time')
+        ReactDOM.render(<Time/>,containerTime)
+    </script>
+</body>
+</html>

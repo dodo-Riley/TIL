@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <!--컴포넌트에 이벤트 연결-->
+    <script type="text/babel">
+        class App4 extends React.Component {
+            constructor(props) {
+                super(props)
+                this.메소드이름 = this.메소드이름.bind(this) // 2) 메소드에 this 바인드
+            }
+            render() {
+                return (<h1 이벤트이름={this.메소드이름}></h1>) // 3) 이벤트 연결
+            }
+            메소드이름 (event) {  // 1) 메소드 선언
+                // 이벤트가 호출될 때 실행될 내용
+            }
+        }
+    </script>
+
+    <!--버튼 클릭 횟수 세기-->
+    <div id="click"></div>
+    <script type="text/babel">
+        class Click extends React.Component {
+            constructor (props) {
+                super (props)
+                this.state = {count : 0}
+                this.countUp=this.countUp.bind(this)
+                this.clear=this.clear.bind(this) // 초기화버튼은 그냥 추가해봄
+            }
+            render() {
+                return (<div>
+                    <h1>클릭한 횟수:{this.state.count}</h1>
+                    <button onClick={this.countUp}>클릭</button>
+                    <button onClick={this.clear}>초기화</button>
+                    </div>) // 이벤트종류 확인 : https://ko.reactjs.org/docs/events.html#clipboard-events
+            }
+            countUp (event) {
+                this.setState({
+                    count : this.state.count + 1
+                })
+            }
+            clear (event) {
+                this.setState({
+                    count : 0
+                })
+            }
+        }
+        const containerClick = document.getElementById('click')
+        ReactDOM.render(<Click/>,containerClick)
+    </script>
+
+    <!--다른 this 바인드 방법-->
+    <div id="click2"></div>
+    <script type="text/babel">
+        class Click2 extends React.Component {
+            constructor (props) {
+                super (props)
+                this.state = {count : 0}
+                // bind 제거
+            }
+            render() {
+                return (<div>
+                    <h1>클릭한 횟수:{this.state.count}</h1>
+                    <button onClick={(e)=>this.countUp(e)}>클릭</button> 
+                    </div>)// 화살표함수로
+            }
+            countUp (event) {
+                this.setState({
+                    count : this.state.count + 1
+                })
+            }
+        }
+        const containerClick2 = document.getElementById('click2')
+        ReactDOM.render(<Click2/>,containerClick2)
+    </script>
+
+    <div id="click3"></div>
+    <script type="text/babel">
+        class Click3 extends React.Component {
+            constructor (props) {
+                super (props)
+                this.state = {count : 0}
+                // bind 제거
+            }
+            render() {
+                return (<div>
+                    <h1>클릭한 횟수:{this.state.count}</h1>
+                    <button onClick={this.countUp}>클릭</button> 
+                    </div>)
+            }
+            countUp = (event) => { // 화살표함수로
+                this.setState({
+                    count : this.state.count + 1
+                })
+            }
+        }
+        const containerClick3 = document.getElementById('click3')
+        ReactDOM.render(<Click3/>,containerClick3)
+    </script>
+
+    <!--입력 양식 사용-->
+    <div id="input"></div>
+    <script type="text/babel">
+        class Input extends React.Component {
+            constructor (props) {
+                super(props)
+                this.state = {text:''}
+                this.handleChange=this.handleChange.bind(this)
+            }
+            render() {
+                return (<div>
+                    <input value={this.state.text} onChange={this.handleChange}/>
+                    <h1>{this.state.text}</h1>
+                    </div>)
+            }
+            handleChange (event) {
+                this.setState({
+                    text:event.target.value
+                })
+            }
+        }
+        const containerInput = document.getElementById('input')
+        ReactDOM.render(<Input/>,containerInput)
+    </script>
+</body>
+</html>
